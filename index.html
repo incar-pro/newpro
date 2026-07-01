@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>위촉서류 제출 및 위촉일정 안내</title>
+<title>위촉 URL제출 안내</title>
 <meta name="theme-color" content="#142D85">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -312,7 +312,7 @@
         <div class="year" id="yearLabel">2026</div>
       </div>
     </div>
-    <h1>위촉서류 제출 및 위촉일정 안내</h1>
+    <h1>위촉 URL제출 안내</h1>
     <p>필수 진행 사항을 순서대로 확인하고 체크해 주세요.</p>
   </div>
 
@@ -453,7 +453,7 @@
   const monthPadded = String(currentMonth).padStart(2, '0');
   document.getElementById('issueNumber').textContent = monthPadded;
   document.getElementById('yearLabel').textContent = now.getFullYear();
-  document.title = currentMonth + '월 위촉서류 제출 및 위촉일정 안내';
+  document.title = currentMonth + '월 위촉 URL제출 안내';
 
   const STORAGE_KEY = 'incar-recruit-checklist-' + now.getFullYear() + '-' + monthPadded;
   const boxes = Array.from(document.querySelectorAll('[data-item] input[type="checkbox"]'));
