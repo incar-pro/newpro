@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>위촉서류 제출 및 위촉일정 안내</title>
+<meta name="theme-color" content="#142D85">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<style>
+  :root{
+    --paper: #F7F9FC;
+    --card: #FFFFFF;
+    --ink: #1F2937;
+    --ink-soft: #6B7280;
+    --ink-faint: #9CA3AF;
+    --line: #E8EDF5;
+    --line-strong: #D9E2F1;
+    --near-black: #142D85;
+    --blue: #2B4DB8;
+    --blue-soft: #91A0C5;
+    --blue-tint: #EEF4FF;
+    --red: #D1544A;
+    --radius: 12px;
+  }
+  *{ box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html,body{
+    margin:0; padding:0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", -apple-system, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap{
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 0 90px;
+  }
+
+  /* ===== Masthead ===== */
+  .masthead{
+    background: var(--near-black);
+    color: #fff;
+    padding: 22px 24px 30px;
+  }
+  .masthead-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom: 34px;
+  }
+  .kicker{
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    font-weight: 600;
+  }
+  .masthead-top img{
+    height: 16px;
+    width: auto;
+    opacity: 0.92;
+  }
+  .issue-row{
+    display:flex;
+    align-items: flex-end;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+  .issue-number{
+    font-family: "Baloo 2", "Pretendard Variable", sans-serif;
+    font-weight: 700;
+    font-size: 76px;
+    line-height: 0.8;
+    letter-spacing: -0.02em;
+    color: var(--blue-soft);
+  }
+  .issue-meta{
+    padding-bottom: 6px;
+  }
+  .issue-meta .unit{
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 2px;
+  }
+  .issue-meta .year{
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+  }
+  .masthead h1{
+    margin: 0 0 8px;
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .masthead p{
+    margin: 0;
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* ===== Progress ===== */
+  .progress-box{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    padding: 16px 24px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+  }
+  .progress-track{
+    flex:1;
+    height: 3px;
+    background: var(--line);
+    border-radius: 999px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    width:0%;
+    background: var(--near-black);
+    border-radius: 999px;
+    transition: width 0.35s ease;
+  }
+  .progress-label{
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .content{ padding: 28px 24px 0; }
+
+  /* ===== Section ===== */
+  .section{ margin-bottom: 30px; }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-left: 12px;
+    border-left: 2px solid var(--tag-color, var(--ink));
+  }
+  .section-head .tag{
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--tag-color, var(--ink-soft));
+  }
+  .section-head h2{
+    margin:0;
+    font-size: 15.5px;
+    font-weight: 700;
+  }
+  .section.required{ --tag-color: var(--red); }
+  .section.info{ --tag-color: var(--blue); }
+  .section.notice{ --tag-color: var(--red); }
+  .section-sub{
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    margin: -8px 0 14px 14px;
+  }
+
+  .card{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  /* Checklist item */
+  .item{
+    display:flex;
+    gap: 13px;
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .item:last-child{ border-bottom: none; }
+  .item input[type="checkbox"]{
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px; height: 20px;
+    min-width: 20px;
+    border-radius: 5px;
+    border: 1.5px solid #CBCFD4;
+    margin-top: 2px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.15s ease;
+  }
+  .item input[type="checkbox"]:checked{
+    background: var(--blue);
+    border-color: var(--blue);
+  }
+  .item input[type="checkbox"]:checked::after{
+    content:"";
+    position:absolute;
+    left: 6px; top: 2px;
+    width: 5px; height: 10px;
+    border: solid white;
+    border-width: 0 1.6px 1.6px 0;
+    transform: rotate(45deg);
+  }
+  .item-content{ flex:1; min-width:0; }
+  .item-content .name{
+    font-weight: 700;
+    font-size: 14.5px;
+    margin-bottom: 3px;
+  }
+  .item-content .desc{
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  .item-content .note{
+    font-size: 11px;
+    color: var(--red);
+    background: var(--line-strong);
+    display:inline-block;
+    padding: 2px 8px;
+    border-radius: 5px;
+    margin-left: 6px;
+    font-weight: 600;
+    vertical-align: middle;
+  }
+  .item.done .name{ color: var(--ink-faint); text-decoration: line-through; text-decoration-color: var(--line-strong); }
+
+  .link-btn{
+    display:inline-flex;
+    align-items:center;
+    gap: 5px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--blue);
+    background: transparent;
+    padding: 7px 0;
+    text-decoration: none;
+    border-bottom: 1px solid var(--blue);
+  }
+  .link-btn .arrow{ transition: transform 0.15s ease; }
+  .link-btn:active .arrow{ transform: translateX(2px); }
+
+  .credential{
+    font-size: 12px;
+    color: var(--ink-soft);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 7px 11px;
+    margin: 4px 0 10px;
+    font-family: "SFMono-Regular", Menlo, monospace;
+    display:inline-block;
+  }
+
+  /* Warning list */
+  .warn-list{ list-style: none; margin: 0; padding: 16px 18px; }
+  .warn-list li{
+    display:flex;
+    gap: 10px;
+    padding: 9px 0;
+    font-size: 13.5px;
+    border-bottom: 1px solid var(--line);
+  }
+  .warn-list li:last-child{ border-bottom: none; }
+  .warn-list .dot{ color: var(--red); font-weight: 900; }
+  .warn-tail{
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    padding: 12px 18px;
+    border-top: 1px solid var(--line);
+    background: var(--paper);
+  }
+
+  .plain-note{
+    font-size: 13px;
+    color: var(--ink-soft);
+    padding: 16px 18px;
+    margin: 0;
+  }
+
+  .footer-note{
+    text-align:center;
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    margin-top: 8px;
+    padding: 0 24px;
+  }
+
+  @media (max-width: 420px){
+    .issue-number{ font-size: 62px; }
+    .masthead h1{ font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="masthead-top">
+      <span class="kicker" id="kickerLabel">MONTHLY NOTICE</span>
+      <img src="data:image/png;base64,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" alt="PRO">
+    </div>
+    <div class="issue-row">
+      <div class="issue-number" id="issueNumber">07</div>
+      <div class="issue-meta">
+        <div class="unit" id="unitLabel">월</div>
+        <div class="year" id="yearLabel">2026</div>
+      </div>
+    </div>
+    <h1>위촉서류 제출 및 위촉일정 안내</h1>
+    <p>필수 진행 사항을 순서대로 확인하고 체크해 주세요.</p>
+  </div>
+
+  <div class="progress-box">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label" id="progressLabel">0 / 5 완료</div>
+  </div>
+
+  <div class="content">
+
+  <!-- 1. 인카 교육 -->
+  <div class="section required">
+    <div class="section-head">
+      <span class="tag">필수</span>
+      <h2>인카 교육 수료</h2>
+    </div>
+    <div class="section-sub">교육 시작 시 이름을 꼭 말씀해 주세요</div>
+    <div class="card">
+      <div class="item" data-item>
+        <input type="checkbox">
+        <div class="item-content">
+          <div class="name">인카 교육 수료 + 문자인증</div>
+          <div class="desc">교육 수료 후 문자인증까지 완료해야 합니다.</div>
+          <div class="credential">ID: incar+사원번호 &nbsp;/&nbsp; PW: 사원번호</div>
+          <div>
+            <a class="link-btn" href="http://incar.fnkorea.com" target="_blank" rel="noopener">교육 사이트 바로가기 <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 생보 - 서류 제출과 동시에 -->
+  <div class="section required">
+    <div class="section-head">
+      <span class="tag">필수</span>
+      <h2>[생보] 서류 제출과 동시에 URL 동의</h2>
+    </div>
+    <div class="section-sub">해당되는 보험사 링크에서 모바일 동의를 진행하세요</div>
+    <div class="card">
+      <div class="item" data-item>
+        <input type="checkbox">
+        <div class="item-content">
+          <div class="name">KB라이프생명 (KB라이프 / 푸르덴셜생명)</div>
+          <div><a class="link-btn" href="http://id.kblife.co.kr/gafp/75400" target="_blank" rel="noopener">동의 페이지 <span class="arrow">→</span></a></div>
+        </div>
+      </div>
+      <div class="item" data-item>
+        <input type="checkbox">
+        <div class="item-content">
+          <div class="name">메트라이프 <span class="note">위촉서류에 동의 일자 기재 필수</span></div>
+          <div><a class="link-btn" href="https://brand.metlife.co.kr/ga/appt/selectMoblieCert.do" target="_blank" rel="noopener">동의 페이지 <span class="arrow">→</span></a></div>
+        </div>
+      </div>
+      <div class="item" data-item>
+        <input type="checkbox">
+        <div class="item-content">
+          <div class="name">신한라이프</div>
+          <div><a class="link-btn" href="https://ga.shinhanlife.co.kr:11043/mw/srhdjgp020m.mdv" target="_blank" rel="noopener">동의 페이지 <span class="arrow">→</span></a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. 생보 - 협회 등록 이후 -->
+  <div class="section required">
+    <div class="section-head">
+      <span class="tag">필수</span>
+      <h2>[생보] 협회 등록 이후 URL 동의</h2>
+    </div>
+    <div class="section-sub">협회 등록이 완료된 후 진행하는 항목입니다</div>
+    <div class="card">
+      <div class="item" data-item>
+        <input type="checkbox">
+        <div class="item-content">
+          <div class="name">하나생명</div>
+          <div><a class="link-btn" href="https://sales.hanalife.co.kr/ga/mo/MCM00007005M.do" target="_blank" rel="noopener">동의 페이지 <span class="arrow">→</span></a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 손보 위촉 일정 -->
+  <div class="section info">
+    <div class="section-head">
+      <span class="tag">일정</span>
+      <h2>[손보] 위촉 일정</h2>
+    </div>
+    <div class="card">
+      <p class="plain-note">
+        마감 내 제출 시 등록일에 맞춰 일괄 코드 발급됩니다.<br>
+        보험사별로 익일 또는 익익일부터 사용 가능합니다.
+      </p>
+    </div>
+  </div>
+
+  <!-- 5. 위촉 제한 및 심사 대상 -->
+  <div class="section notice">
+    <div class="section-head">
+      <span class="tag">주의</span>
+      <h2>위촉 제한 및 심사 대상</h2>
+    </div>
+    <div class="card">
+      <ul class="warn-list">
+        <li><span class="dot">•</span><span>이클린 수당환수</span></li>
+        <li><span class="dot">•</span><span>고액 채무자 (1천만 원 이하만 가능)</span></li>
+        <li><span class="dot">•</span><span>이적 횟수 초과자</span></li>
+        <li><span class="dot">•</span><span>당사 등록 3회 이상 (재입사 포함)</span></li>
+      </ul>
+      <div class="warn-tail">해당자는 소명서 제출이 필수이며, 등록이 1~2차수 지연될 수 있습니다.</div>
+    </div>
+  </div>
+
+  <!-- 기타 참고 -->
+  <div class="section info">
+    <div class="section-head">
+      <span class="tag">참고</span>
+      <h2>기타 참고</h2>
+    </div>
+    <div class="card">
+      <p class="plain-note">
+        경력자는 이전 회사 해촉 일정에 따라 서류 재제출이 발생할 수 있습니다.
+      </p>
+      <div class="plain-note" style="padding-top:0;">
+        <a class="link-btn" href="https://incar-appointment-system.web.app?intake=center&center=MA2%EC%A7%80%EC%9B%90%EC%84%BC%ED%84%B0" target="_blank" rel="noopener">서류 재제출 링크 <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+
+  <p class="footer-note">체크 표시는 이 브라우저에만 저장되며, 새로고침해도 유지됩니다.</p>
+
+  </div>
+</div>
+
+<script>
+  const now = new Date();
+  const currentMonth = now.getMonth() + 1;
+  const monthPadded = String(currentMonth).padStart(2, '0');
+  document.getElementById('issueNumber').textContent = monthPadded;
+  document.getElementById('yearLabel').textContent = now.getFullYear();
+  document.title = currentMonth + '월 위촉서류 제출 및 위촉일정 안내';
+
+  const STORAGE_KEY = 'incar-recruit-checklist-' + now.getFullYear() + '-' + monthPadded;
+  const boxes = Array.from(document.querySelectorAll('[data-item] input[type="checkbox"]'));
+  const fill = document.getElementById('progressFill');
+  const label = document.getElementById('progressLabel');
+
+  function loadState(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    }catch(e){ return []; }
+  }
+  function saveState(){
+    const state = boxes.map(b => b.checked);
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){}
+  }
+  function updateProgress(){
+    const total = boxes.length;
+    const done = boxes.filter(b => b.checked).length;
+    const pct = total ? Math.round((done/total)*100) : 0;
+    fill.style.width = pct + '%';
+    label.textContent = done + ' / ' + total + ' 완료';
+  }
+  function applyItemStyle(box){
+    const item = box.closest('.item');
+    if(box.checked){ item.classList.add('done'); } else { item.classList.remove('done'); }
+  }
+
+  const saved = loadState();
+  boxes.forEach((b, i) => {
+    if(saved[i]) b.checked = true;
+    applyItemStyle(b);
+    b.addEventListener('change', () => {
+      applyItemStyle(b);
+      updateProgress();
+      saveState();
+    });
+  });
+  updateProgress();
+</script>
+
+</body>
+</html>
